@@ -2,14 +2,15 @@
 
     console.log('Walidujemy form :)');
 
-    const username = document.querySelector("#username");
-    const email = document.querySelector("#email");
-    const pin = document.querySelector("#pin");
-    const amount = document.querySelector("#amount");
-    const agreement1 = document.querySelector("#agreement-1");
-    const agreement2 = document.querySelector("#agreement-2");
-    const agreement3 = document.querySelector("#agreement-3");
-    const submit = document.querySelector("button");
+    const form = document.getElementById("form");
+    const username = form.querySelector("#username");
+    const email = form.querySelector("#email");
+    const pin = form.querySelector("#pin");
+    const amount = form.querySelector("#amount");
+    const agreement1 = form.querySelector("#agreement-1");
+    const agreement2 = form.querySelector("#agreement-2");
+    const agreement3 = form.querySelector("#agreement-3");
+    const submit = form.querySelector("button");
 
     const usernameRegex = new RegExp(/[a-z]+/g);
     const pinRegex = new RegExp(/^[0-9]{1,8}$/g);
@@ -153,7 +154,7 @@
         }
     }
 
-    submit.addEventListener("click", (event) => {
+    form.addEventListener("submit", (event) => {
         event.preventDefault();
         validateUsername();
         validateEmail();
