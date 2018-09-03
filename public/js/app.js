@@ -3,14 +3,9 @@
     console.log('Walidujemy form :)');
 
     const form = document.getElementById("form");
-    const username = form.querySelector("#username");
-    const email = form.querySelector("#email");
-    const pin = form.querySelector("#pin");
-    const amount = form.querySelector("#amount");
     const agreement1 = form.querySelector("#agreement-1");
     const agreement2 = form.querySelector("#agreement-2");
     const agreement3 = form.querySelector("#agreement-3");
-    const submit = form.querySelector("button");
 
     const usernameRegex = new RegExp(/[a-z]+/g);
     const pinRegex = new RegExp(/^[0-9]{1,8}$/g);
@@ -19,70 +14,37 @@
     function validateUsername() {
         const usernameValue = username.value;
         const usernameTest = usernameRegex.test(usernameValue);
-        const emptyDiv = document.createElement("div");
 
         if (usernameValue === "") {
-            username.classList.add("is-invalid");
-            document.querySelector("[data-name='username']").appendChild(emptyDiv);
-            const emptyDivText = document.createTextNode("nie może być puste");
-            const emptyFinal = emptyDiv.appendChild(emptyDivText);
-            emptyDiv.classList.add("invalid-feedback");
+            addErrorMessage("username", "username", "Musisz wpisać nazwę użytkownika");
         } else if (usernameTest) {
-            username.classList.add("is-valid");
-            document.querySelector("[data-name='username']").appendChild(emptyDiv);
-            const emptyDivText = document.createTextNode("pięknie");
-            const emptyFinal = emptyDiv.appendChild(emptyDivText);
-            emptyDiv.classList.add("valid-feedback");
+            addSuccessMessage("username", "username", "Świetna nazwa użytkownika");
         } else {
-            username.classList.add("is-invalid");
-            document.querySelector("[data-name='username']").appendChild(emptyDiv);
-            const emptyDivText = document.createTextNode("spróbuj ponownie");
-            const emptyFinal = emptyDiv.appendChild(emptyDivText);
-            emptyDiv.classList.add("invalid-feedback");
+            addErrorMessage("username", "username", "Niepoprawna nazwa użytkownika. Spróbuj ponownie");
         }
     }
 
     function validateEmail() {
         const emailValue = email.value;
-        const emptyDiv = document.createElement("div");
 
         if (email.validity.valid) {
             if (email.value !== "") {
-                email.classList.add("is-valid");
-                document.querySelector("[data-name='email']").appendChild(emptyDiv);
-                const emptyDivText = document.createTextNode("pięknie");
-                const emptyFinal = emptyDiv.appendChild(emptyDivText);
-                emptyDiv.classList.add("valid-feedback");
+                addSuccessMessage("email", "email", "Piękny e-mail");
             }
         } else {
-            email.classList.add("is-invalid");
-            document.querySelector("[data-name='email']").appendChild(emptyDiv);
-            const emptyDivText = document.createTextNode("zły format");
-            const emptyFinal = emptyDiv.appendChild(emptyDivText);
-            emptyDiv.classList.add("invalid-feedback");
+            addErrorMessage("email", "email", "Niepoprawny e-mail. Spróbuj ponownie");
         }
     }
 
     function validatePin() {
         const pinValue = pin.value;
         const pinTest = pinRegex.test(pinValue);
-        const emptyDiv = document.createElement("div");
 
         if (pinValue !== "") {
             if (pinTest) {
-                pin.classList.add("is-valid");
-                document.querySelector("[data-name='pin']").appendChild(emptyDiv);
-                const emptyDivText = document.createTextNode("pięknie");
-                const emptyFinal = emptyDiv.appendChild(emptyDivText);
-                emptyDiv.classList.add("valid-feedback");
-                console.log("ok");
+                addSuccessMessage("pin", "pin", "Wszystko się zgadza");
             } else {
-                pin.classList.add("is-invalid");
-                document.querySelector("[data-name='pin']").appendChild(emptyDiv);
-                const emptyDivText = document.createTextNode("spróbuj ponownie");
-                const emptyFinal = emptyDiv.appendChild(emptyDivText);
-                emptyDiv.classList.add("invalid-feedback");
-                console.log("nieok");
+                addErrorMessage("pin", "pin", "Niepoprawny PIN. Spróbuj ponownie");
             }
         }
     }
@@ -90,68 +52,59 @@
     function validateAmout() {
         const amountValue = amount.value;
         const amountTest = amountRegex.test(amountValue);
-        const emptyDiv = document.createElement("div");
 
         if (amountValue === "") {
-            amount.classList.add("is-invalid");
-            document.querySelector("[data-name='amount']").appendChild(emptyDiv);
-            const emptyDivText = document.createTextNode("nie może być puste");
-            const emptyFinal = emptyDiv.appendChild(emptyDivText);
-            emptyDiv.classList.add("invalid-feedback");
+            addErrorMessage("amount", "amount", "Musisz wpisać kwotę");
         } else if (amountTest) {
-            amount.classList.add("is-valid");
-            document.querySelector("[data-name='amount']").appendChild(emptyDiv);
-            const emptyDivText = document.createTextNode("pięknie");
-            const emptyFinal = emptyDiv.appendChild(emptyDivText);
-            emptyDiv.classList.add("valid-feedback");
+            addSuccessMessage("amount", "amount", "Bardzo piękna kwota");
         } else {
-            amount.classList.add("is-invalid");
-            document.querySelector("[data-name='amount']").appendChild(emptyDiv);
-            const emptyDivText = document.createTextNode("spróbuj ponownie");
-            const emptyFinal = emptyDiv.appendChild(emptyDivText);
-            emptyDiv.classList.add("invalid-feedback");
+            addErrorMessage("amount", "amount", "Niepoprawna kwota. Spróbuj ponownie");
         }
     }
 
     function validateRequiredCheckbox1() {
         const check1Value = agreement1.checked;
-        const emptyDiv = document.createElement("div");
 
         if (check1Value) {
-            agreement1.classList.add("is-valid");
-            document.querySelector("[data-name='check1']").appendChild(emptyDiv);
-            const emptyDivText = document.createTextNode("wszystko ok");
-            const emptyFinal = emptyDiv.appendChild(emptyDivText);
-            emptyDiv.classList.add("valid-feedback");
-
+            addSuccessMessage("agreement-1", "check1", "Wszystko przepięknie");
         } else {
-            agreement1.classList.add("is-invalid");
-            document.querySelector("[data-name='check1']").appendChild(emptyDiv);
-            const emptyDivText = document.createTextNode("zaznacz zgodę");
-            const emptyFinal = emptyDiv.appendChild(emptyDivText);
-            emptyDiv.classList.add("invalid-feedback");
+            addErrorMessage("agreement-1", "check1", "Musisz zaznaczyć tę zgodę");
         }
     }
 
 
     function validateRequiredCheckbox2() {
         const check2Value = agreement2.checked;
-        const emptyDiv = document.createElement("div");
 
         if (check2Value) {
-            agreement2.classList.add("is-valid");
-            document.querySelector("[data-name='check2']").appendChild(emptyDiv);
-            const emptyDivText = document.createTextNode("wszystko ok");
-            const emptyFinal = emptyDiv.appendChild(emptyDivText);
-            emptyDiv.classList.add("valid-feedback");
-
+            addSuccessMessage("agreement-2", "check2", "Wszystko cudownie");
         } else {
-            agreement2.classList.add("is-invalid");
-            document.querySelector("[data-name='check2']").appendChild(emptyDiv);
-            const emptyDivText = document.createTextNode("zaznacz zgodę");
-            const emptyFinal = emptyDiv.appendChild(emptyDivText);
-            emptyDiv.classList.add("invalid-feedback");
+            addErrorMessage("agreement-2", "check2", "Musisz zaznaczyć tę zgodę");
         }
+    }
+
+    function addSuccessMessage(fieldName, inputName, messageText) {
+        const emptyDiv = document.createElement("div");
+        const formElement = document.getElementById("form");
+        const fieldElement = formElement.querySelector(`[name='${fieldName}']`);
+        const emptyDivText = document.createTextNode(messageText);
+
+        fieldElement.classList.add("is-valid");
+        document.querySelector(`[data-name='${inputName}']`).appendChild(emptyDiv);
+        emptyDiv.appendChild(emptyDivText);
+        emptyDiv.classList.add("valid-feedback");
+    }
+
+    function addErrorMessage(fieldName, inputName, messageText) {
+        const emptyDiv = document.createElement("div");
+        const formElement = document.getElementById("form");
+        const fieldElement = formElement.querySelector(`[name='${fieldName}']`);
+        const emptyDivText = document.createTextNode(messageText);
+
+        fieldElement.classList.add("is-invalid");
+        document.querySelector(`[data-name='${inputName}']`).appendChild(emptyDiv);
+        emptyDiv.appendChild(emptyDivText);
+        emptyDiv.classList.add("invalid-feedback");
     }
 
     form.addEventListener("submit", (event) => {
