@@ -16,11 +16,11 @@
         const usernameTest = usernameRegex.test(usernameValue);
 
         if (usernameValue === "") {
-            addErrorMessage("username", "username", "Musisz wpisać nazwę użytkownika");
+            addErrorMessage("username", "Musisz wpisać nazwę użytkownika");
         } else if (usernameTest) {
-            addSuccessMessage("username", "username", "Świetna nazwa użytkownika");
+            addSuccessMessage("username", "Świetna nazwa użytkownika");
         } else {
-            addErrorMessage("username", "username", "Niepoprawna nazwa użytkownika. Spróbuj ponownie");
+            addErrorMessage("username", "Niepoprawna nazwa użytkownika. Spróbuj ponownie");
         }
     }
 
@@ -29,10 +29,10 @@
 
         if (email.validity.valid) {
             if (email.value !== "") {
-                addSuccessMessage("email", "email", "Piękny e-mail");
+                addSuccessMessage("email", "Piękny e-mail");
             }
         } else {
-            addErrorMessage("email", "email", "Niepoprawny e-mail. Spróbuj ponownie");
+            addErrorMessage("email", "Niepoprawny e-mail. Spróbuj ponownie");
         }
     }
 
@@ -42,9 +42,9 @@
 
         if (pinValue !== "") {
             if (pinTest) {
-                addSuccessMessage("pin", "pin", "Wszystko się zgadza");
+                addSuccessMessage("pin", "Wszystko się zgadza");
             } else {
-                addErrorMessage("pin", "pin", "Niepoprawny PIN. Spróbuj ponownie");
+                addErrorMessage("pin", "Niepoprawny PIN. Spróbuj ponownie");
             }
         }
     }
@@ -54,11 +54,11 @@
         const amountTest = amountRegex.test(amountValue);
 
         if (amountValue === "") {
-            addErrorMessage("amount", "amount", "Musisz wpisać kwotę");
+            addErrorMessage("amount", "Musisz wpisać kwotę");
         } else if (amountTest) {
-            addSuccessMessage("amount", "amount", "Bardzo piękna kwota");
+            addSuccessMessage("amount", "Bardzo piękna kwota");
         } else {
-            addErrorMessage("amount", "amount", "Niepoprawna kwota. Spróbuj ponownie");
+            addErrorMessage("amount", "Niepoprawna kwota. Spróbuj ponownie");
         }
     }
 
@@ -66,9 +66,9 @@
         const check1Value = agreement1.checked;
 
         if (check1Value) {
-            addSuccessMessage("agreement-1", "check1", "Wszystko przepięknie");
+            addSuccessMessage("agreement-1", "Wszystko przepięknie");
         } else {
-            addErrorMessage("agreement-1", "check1", "Musisz zaznaczyć tę zgodę");
+            addErrorMessage("agreement-1", "Musisz zaznaczyć tę zgodę");
         }
     }
 
@@ -77,32 +77,30 @@
         const check2Value = agreement2.checked;
 
         if (check2Value) {
-            addSuccessMessage("agreement-2", "check2", "Wszystko cudownie");
+            addSuccessMessage("agreement-2", "Wszystko cudownie");
         } else {
-            addErrorMessage("agreement-2", "check2", "Musisz zaznaczyć tę zgodę");
+            addErrorMessage("agreement-2", "Musisz zaznaczyć tę zgodę");
         }
     }
 
-    function addSuccessMessage(fieldName, inputName, messageText) {
+    function addSuccessMessage(fieldName, messageText) {
         const emptyDiv = document.createElement("div");
-        const formElement = document.getElementById("form");
-        const fieldElement = formElement.querySelector(`[name='${fieldName}']`);
+        const fieldElement = form.querySelector(`[name='${fieldName}']`);
         const emptyDivText = document.createTextNode(messageText);
 
         fieldElement.classList.add("is-valid");
-        document.querySelector(`[data-name='${inputName}']`).appendChild(emptyDiv);
+        fieldElement.parentNode.appendChild(emptyDiv);
         emptyDiv.appendChild(emptyDivText);
         emptyDiv.classList.add("valid-feedback");
     }
 
-    function addErrorMessage(fieldName, inputName, messageText) {
+    function addErrorMessage(fieldName, messageText) {
         const emptyDiv = document.createElement("div");
-        const formElement = document.getElementById("form");
-        const fieldElement = formElement.querySelector(`[name='${fieldName}']`);
+        const fieldElement = form.querySelector(`[name='${fieldName}']`);
         const emptyDivText = document.createTextNode(messageText);
 
         fieldElement.classList.add("is-invalid");
-        document.querySelector(`[data-name='${inputName}']`).appendChild(emptyDiv);
+        fieldElement.parentNode.appendChild(emptyDiv);
         emptyDiv.appendChild(emptyDivText);
         emptyDiv.classList.add("invalid-feedback");
     }
